@@ -19,8 +19,11 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             Center(child: Image.asset("images/logo.png")),
             SizedBox(height: 20),
+            //Login Button
             MaterialButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, "/login");
+              },
               color: Color(0xFFC9B59C),
               minWidth: 223,
               height: 59,
@@ -31,8 +34,12 @@ class _SplashScreenState extends State<SplashScreen> {
                 "Login",
                 style: TextStyle(color: Color(0xFF6B6B6B), fontSize: 36,fontWeight: FontWeight.bold),
               ),
-            ),SizedBox(height: 24,),MaterialButton(
-              onPressed: () {},
+            ), SizedBox(height: 24,),
+            //Sign Up Button
+            MaterialButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/signup");
+              },
               color: Color(0xFFC9B59C),
               minWidth: 223,
               height: 59,

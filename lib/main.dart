@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:simple_social_media_app/features/auth/auth_presentation/auth_screens/splash_screen.dart';
 
+import 'features/auth/auth_presentation/auth_screens/login_screen.dart';
+import 'features/auth/auth_presentation/auth_screens/signUp_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -13,7 +16,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
-      routes: {},
+      routes: {
+        "/login": (context) => LoginScreen(),
+        "/signup": (context) => SignupScreen(),
+      },
     );
   }
 }
