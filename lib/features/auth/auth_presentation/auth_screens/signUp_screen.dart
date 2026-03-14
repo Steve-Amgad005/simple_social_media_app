@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../auth_widgets/app_background.dart';
+import '../../../home/home_presentation/home_widgets/app_background.dart';
 import '../auth_widgets/text_field.dart';
 
 class SignupScreen extends StatefulWidget {
