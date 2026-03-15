@@ -75,7 +75,9 @@ class FeedPostCard extends StatelessWidget {
                 SizedBox(width: 8),
                 Text("0"),
                 SizedBox(width: 16),
-                IconButton(onPressed: () {},
+                IconButton(onPressed: () {
+                  Navigator.pushNamed(context, "/comments");
+                },
                     icon: Icon(Icons.comment, color: Color(0xFF8B8987))),
                 SizedBox(width: 8),
                 Text("0"),

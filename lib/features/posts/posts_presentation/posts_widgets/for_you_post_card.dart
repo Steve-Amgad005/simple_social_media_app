@@ -91,7 +91,9 @@ class ForYouPostCard extends StatelessWidget {
                 Text("0"),
                 SizedBox(width: 16),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/comments");
+                  },
                   icon: Icon(Icons.comment, color: Color(0xFF8B8987)),
                 ),
                 SizedBox(width: 8),

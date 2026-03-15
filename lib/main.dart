@@ -5,6 +5,7 @@ import 'package:simple_social_media_app/features/posts/posts_presentation/posts_
 import 'features/auth/auth_presentation/auth_screens/login_screen.dart';
 import 'features/auth/auth_presentation/auth_screens/signUp_screen.dart';
 import 'features/auth/auth_presentation/auth_screens/splash_screen.dart';
+import 'features/comments/comments_presentation/comments_screens/comments.dart';
 import 'features/posts/posts_presentation/posts_screens/add_post.dart';
 
 void main() {
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         "/home": (context) => HomeScreen(),
         "/homeLayout": (context) => HomeLayout(),
         "/splash": (context) => SplashScreen(),
+        "/comments": (context) => CommentsScreen(),
       },
     );
   }
