@@ -94,7 +94,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, "/homeLayout");
+                },
                 child: Text(
                   "Login",
                   style: TextStyle(

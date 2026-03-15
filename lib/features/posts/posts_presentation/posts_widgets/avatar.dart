@@ -7,7 +7,7 @@ class Avatar extends StatelessWidget{
   Widget build(BuildContext context){
     return CircleAvatar(
       radius: 28,
-      backgroundImage: AssetImage("images/mypic.jpg"),
+      backgroundImage: AssetImage(img),
     );
   }
 
