@@ -15,17 +15,20 @@ class AuthRemoteDataSource {
     required String? password,
     required String? name,
   }) async {
+    print("PASSWORD SENT TO API: $password");
     try {
       final response = await dio.post(
         "https://sm-apis-i6yq.onrender.com/api/auth/register",
         data: {
           "email": email,
-          "username": username,
           "password": password,
+          "username": username,
           "name": name,
         },
       );
-      return UserModel.fromJson(response.data);
+      final userJson = response.data["data"]["user"];
+
+      return UserModel.fromJson(userJson);
     } on DioException catch (e) {
       if (e.response != null) {
         throw Exception(e.response?.data["message"] ?? "Unknown error");
@@ -46,8 +49,9 @@ class AuthRemoteDataSource {
         "password": password,
       },
     );
+    final userJson = response.data["data"]["user"];
 
-    return UserModel.fromJson(response.data);
+    return UserModel.fromJson(userJson);
   }
 
 }

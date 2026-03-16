@@ -20,6 +20,13 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isPasswordHidden = true;
 
   @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: AppBackground(
@@ -63,59 +70,94 @@ class _LoginScreenState extends State<LoginScreen> {
                             fieldType: FieldType.email,
                           ),
                           SizedBox(height: 15),
-                          TextFormField(
+                          // TextFormField(
+                          //   controller: passwordController,
+                          //   obscureText: _isPasswordHidden,
+                          //   style: TextStyle(color: Color(0xFFA8A8A8)),
+                          //   decoration: InputDecoration(
+                          //     prefixIcon: Icon(
+                          //       Icons.lock_outline,
+                          //       color: Color(0xFFB0B0B0),
+                          //     ),
+                          //     labelText: "Password",
+                          //     labelStyle: TextStyle(color: Color(0xFFC9B59C)),
+                          //     hintText: "Enter Your Password",
+                          //     hintStyle: TextStyle(color: Color(0xFFB0B0B0)),
+                          //     enabledBorder: OutlineInputBorder(
+                          //       borderSide: BorderSide(color: Colors.grey),
+                          //       gapPadding: 26,
+                          //     ),
+                          //     focusedBorder: OutlineInputBorder(
+                          //       borderSide: BorderSide(
+                          //         color: Color(0xFFC9B59C),
+                          //         width: 2,
+                          //       ),
+                          //     ),
+                          //     contentPadding: EdgeInsets.symmetric(
+                          //       horizontal: 16,
+                          //       vertical: 14,
+                          //     ),
+                          //     suffixIcon: IconButton(
+                          //       onPressed: () {
+                          //         setState(() {
+                          //           _isPasswordHidden = !_isPasswordHidden;
+                          //         });
+                          //       },
+                          //       icon: Icon(
+                          //         _isPasswordHidden
+                          //             ? Icons.visibility_off_outlined
+                          //             : Icons.visibility_outlined,
+                          //         color: Color(0xFFB0B0B0),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
+                          Text_Field(
                             controller: passwordController,
-                            obscureText: _isPasswordHidden,
-                            style: TextStyle(color: Color(0xFFA8A8A8)),
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.lock_outline,
-                                color: Color(0xFFB0B0B0),
-                              ),
-                              labelText: "Password",
-                              labelStyle: TextStyle(color: Color(0xFFC9B59C)),
-                              hintText: "Enter Your Password",
-                              hintStyle: TextStyle(color: Color(0xFFB0B0B0)),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey),
-                                gapPadding: 26,
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0xFFC9B59C),
-                                  width: 2,
-                                ),
-                              ),
-                              contentPadding: EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 14,
-                              ),
-                              suffixIcon: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    _isPasswordHidden = !_isPasswordHidden;
-                                  });
-                                },
-                                icon: Icon(
-                                  _isPasswordHidden
-                                      ? Icons.visibility_off_outlined
-                                      : Icons.visibility_outlined,
-                                  color: Color(0xFFB0B0B0),
-                                ),
-                              ),
-                            ),
+                            icon: Icons.lock_outline,
+                            label: "Password",
+                            fieldType: FieldType.password,
                           ),
                           SizedBox(height: 32),
                           BlocConsumer<AuthCubit, AuthState>(
                             listener: (context, state) {
                               if (state is AuthSuccess) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text(state.message)),
+                                showDialog(
+                                  context: context,
+                                  builder:
+                                      (context) => AlertDialog(
+                                        title: Text("Success"),
+                                        content: Text(state.message),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pushNamed(
+                                                context,
+                                                "/homeLayout",
+                                              );
+                                            },
+                                            child: Text("OK"),
+                                          ),
+                                        ],
+                                      ),
                                 );
                               }
                               if (state is AuthError) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text(state.message)),
+                                showDialog(
+                                  context: context,
+                                  builder:
+                                      (context) => AlertDialog(
+                                        title: Text("Error"),
+                                        content: Text(state.message),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text("OK"),
+                                          ),
+                                        ],
+                                      ),
                                 );
                               }
                             },

@@ -23,16 +23,16 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> signup(
     String email,
-    String username,
     String password,
+    String username,
     String name,
   ) async {
     emit(AuthLoading());
     try {
       final user = await repository.signup(
         email: email,
-        username: username,
         password: password,
+        username: username,
         name: name,
       );
 
